@@ -1,0 +1,143 @@
+.input-labet {
+  background-color: #eaecf4;
+  color: #6e707e;
+  border-radius: 5px 0 0 5px;
+}
+.item-center {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.p-16 {
+  padding: 10px 15px !important;
+}
+.hide {
+  display: none;
+}
+.rowdata {
+  max-height: 390px !important;
+}
+.result {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.MuiTable-root th,
+.MuiTable-root td {
+  white-space: nowrap !important;
+  text-align: center !important;
+}
+.row {
+  /* display: inline-flex; */
+  gap: 10px;
+}
+.Datarow {
+  display: flex;
+  justify-content: center;
+  width: 320px !important;
+}
+.Datarow tr td {
+  vertical-align: middle;
+  border-bottom: unset !important;
+  border-bottom: 1px solid #424242 !important;
+  height: 30px;
+}
+.Datarow tbody tr:last-child td {
+  border-bottom-color: transparent !important;
+}
+.Datarow tr {
+  background-color: transparent !important;
+}
+.result .Datarow tr:hover {
+  background-color: unset !important;
+}
+.EqualWidthTable {
+  width: 100%;
+  table-layout: fixed;
+}
+.EqualWidthTable td {
+  width: calc(100% / 3);
+  /* Divide equally among 3 columns */
+  text-align: center;
+  /* Optional: Center align text */
+}
+.Datarow tr.Datatr {
+  width: 33.33%;
+  text-align: left;
+
+}
+
+.Datarow tr.Datatr td:nth-child(2) {
+  text-align: center !important;
+}
+
+
+.sort-icon {
+  margin-left: 5px;
+  font-size: 12px;
+}
+.RTable{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+.roundtable{
+  font-size: 12px !important;
+  }
+ 
+  .roundHead{
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+  .roundHead span{
+    margin-left: 3px;
+    cursor: pointer;
+  }
+  .win-color {
+    color: blue;
+  }
+  
+  .lose-color {
+    color: red;
+  }
+
+  .dashboard_card{
+    margin-left: 10px;
+    display: flex;
+    
+  }
+  @media only screen and (max-width: 575px) {
+    .betcards {
+      flex-wrap: wrap !important;
+      row-gap: 10px;
+      margin-bottom: 10px !important;
+    }
+  }
+  .betdata{
+    text-align: left !important;
+  }
+  .card_container2{
+    vertical-align: middle !important ;
+  }
+  .result-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+<<<<<<< HEAD
+  }
+  .truncate {
+    display: inline-block;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle; 
+    cursor: pointer; 
+=======
+    gap:8px;
+>>>>>>> 8c1a5e7b64956a6ac89c976738dce724bf0ba146
+  }

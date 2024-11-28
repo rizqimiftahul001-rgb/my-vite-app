@@ -1,0 +1,102 @@
+.dashboard_card_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px 0px 10px;
+}
+.dashboard_inner h3 {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.dashboard_icon p {
+    font-size: 20px;
+    color: #573EF0;
+    font-weight: 600;
+    /* text-overflow: ellipsis; */
+    /* overflow: hidden; */
+    /* white-space: nowrap; */
+    /* width: calc(100% - 30px); */
+}
+.dashboard_icon p span {
+    font-weight: 700;
+    padding-left: 5px;
+    font-size: 16px;
+}
+.dashboard_icon {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.admin_side_card .dashboard_card{
+    /* width: 100%;
+    max-width: 240px; */
+    width: unset;
+    box-shadow: 5px 5px 13px -4px rgb(0 0 0 / 30%);
+    min-width: 240px;
+}
+.dashboard_card {
+    padding: 20px;
+    width: 300px;
+    display: flex;
+    cursor: pointer;
+    transition: all 0.5s;
+    align-items: center;
+    position: relative;
+    box-shadow: 5px 5px 13px -4px rgb(0 0 0 / 30%);
+
+    border-radius: 6px;
+    border: 1px solid #E9E9E9;
+    background: #FFF;
+}
+.admin_side_card {
+    padding: 0 30px;
+    margin-bottom: 20px;
+}
+.dashboard_icon .flex {
+    transition: all 0.5s;
+}
+.dashboard_inner {
+    width: 100%;
+    gap: 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+@media(max-width:1440px) {
+    .dashboard_card {
+        width: 290px;
+    }
+}
+@media(max-width:1360px) {
+    .dashboard_card_wrapper {
+        padding: 20px 0px;
+        gap: 10px;
+    }
+    .dashboard_card {
+        width: 310px;
+    }
+}
+@media(max-width:991px) {
+    .admin_side_card {
+        padding: 0 20px;
+    }
+}
+@media(max-width:767px) {
+    .dashboard_card_wrapper{
+        justify-content: space-evenly;
+    }
+    .dashboard_card {
+        width: 48.03%;
+    }
+}
+@media(max-width:575px) {
+    .admin_side_card .dashboard_card {
+        max-width: 100%;
+        min-width: 100%;
+    }
+    .dashboard_card {
+        width: 100%;
+    }    
+}

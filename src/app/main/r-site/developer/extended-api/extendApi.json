@@ -1,0 +1,582 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Extension (Seamless) API v1.0",
+    "description": " ## What is an extensible API? \n\n  The extensible API is a method in which your site money and casino money are synchronized through communication with your site, and the user's money is directly deducted from the site money without the need to separately convert it to casino money. \n\n For Seamless API, you need to add ‘MY PAGE’ > ‘Callback URL’ in the left menu. There are two types of callback apis are provided. We will allow you to add only https urls.\n\n After registering a callback urls, it will be called as `/changeBalance` and `/balance` to your operator site. It should be a POST method API and it should be ended with changeBalance and balance endpoint names. \n\n ## Example Callback URLs \n\n `https://your-domain.com/api/changeBalance` \n\n `https://your-domain.com/api/balance` \n\n If you forcefully append the last `/`, it will not work properly. If calling `https://callback_url/api/changeBalance` and redirecting to \n\n `https://callback_url/api/changeBalance/` It does not work properly, so please be careful not to add `/` using URL Rewrite of the web service. \n\n # Create Endpoint form Casino \n\n ### `/changeBalance` API transaction types : `'BET'`, `'WIN'`, `'CANCEL'`, `'REFUND'` \n\n| endpoint | description |\n|-----|-------|\n| `/changeBalance`  |  You will get immediately user bet result when user  bet and resolve result. | |\n| `/balance`  |  You will get immediately user balance once bet has been placed. | \n\n # Timeout information \n\n  When using the scalable method, all responses must be delivered within 2 seconds. Otherwise, it is handled on a case-by-case basis.\n\n If money must be paid (win or cancel): Only the first attempt is made. If you do not receive it within this time, please contact the administrator.\n\n If the money is to be withdrawn (bet): the cancellation request is sent after the bet. However, details of cancellation before betting money deduction ( Agent Timeout during balance, Insufficient funds) do not request cancellation separately, and money is not deducted. If the cancellation money is not paid, contact the manager though Service Desk. \n\n  # Retry Guide \n\n `'BET'`, `'WIN'`, `'CANCEL'`, `'REFUND'` requests sent only once due to traffic problems, and retransmission after that is not supported. \n\n # Time zone \n\n The time zone of this API service uses a dynamic Time Zone that is selected by the parent agent, EX: If the parent agent selects Korean time (Asia/Seoul) it will inherit to child agents. \n\n Parent selected timezone cannot be changed by child agents.",
+    "version": "1.0.15"
+  },
+  "servers": [
+    {
+      "url": "https://your.casino-host.com/api/your/path",
+      "description": "Aslan Gaming Seamless Service"
+    }
+  ],
+  "paths": {
+    "/changeBalance": {
+      "post": {
+        "tags": ["Call Back API"],
+        "summary": "Change Balance",
+        "description": "End Point : `/changeBalance`",
+        "operationId": "changeBalance",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "user": {
+                  "type": "string"
+                },
+                "transaction_type": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "amount": {
+                  "type": "number"
+                },
+                "currency_code": {
+                  "type": "string"
+                },
+                "transaction_id": {
+                  "type": "number"
+                },
+                "transaction_timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "round_id": {
+                  "type": "string"
+                },
+                "round_finished": {
+                  "type": "boolean"
+                },
+                "game_id": {
+                  "type": "string"
+                },
+                "user_data": {
+                  "type": "object",
+                  "properties": {
+                    "user_id": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "game_data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "provider_game_id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "platform": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "vendor": {
+                      "type": "string"
+                    },
+                    "game_type": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "code": 1
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "API error (`/changeBalance` API call response must be within 5 second. if responce not comming within 5 second API call will time out with responce `code: 2`)",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "code": 2
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/balance": {
+      "get": {
+        "tags": ["Call Back API"],
+        "summary": "Balance",
+        "description": "End Point: `/balance`",
+        "operationId": "balance",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "user_id",
+            "description": "Casino User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "code": 1,
+                  "money": 1500
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found error",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "code": 0,
+                  "money": 0
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Other error message API error (`/balance` API call response must be within 5 second. if responce not comming within 5 second API call will time out with responce `code: 2`)",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "code": 2,
+                  "money": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Call Back API",
+      "description": "Operations related to callback API"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Callback API call body when betting": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "165464646489" },
+          "user": {
+            "type": "string",
+            "example": "testuser"
+          },
+          "transaction_type": {
+            "type": "string",
+            "example": "BET"
+          },
+          "reason": {
+            "type": "string",
+            "example": "not_provided"
+          },
+          "amount": {
+            "type": "number",
+            "example": 120
+          },
+          "currency_code": {
+            "type": "string",
+            "example": "KRW"
+          },
+          "transaction_id": {
+            "type": "number",
+            "example": 5500772206906
+          },
+          "transaction_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-07-24 05:52:25"
+          },
+          "round_id": {
+            "type": "string",
+            "example": "5300581668205"
+          },
+          "round_finished": {
+            "type": "boolean",
+            "example": false
+          },
+          "game_id": {
+            "type": "number",
+            "example": 14268
+          },
+          "user_data": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "example": "test_user"
+              },
+              "amount": {
+                "type": "number",
+                "example": 1500
+              }
+            }
+          },
+          "game_data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "10"
+              },
+              "provider_game_id": {
+                "type": "string",
+                "example": "game10"
+              },
+              "title": {
+                "type": "string",
+                "example": "Hit the Bank Hold and Win"
+              },
+              "platform": {
+                "type": "string",
+                "example": "desktop-and-mobile"
+              },
+              "type": {
+                "type": "string",
+                "example": "slots"
+              },
+              "vendor": {
+                "type": "string",
+                "example": "play-son"
+              },
+              "game_type": {
+                "type": "string",
+                "example": "slots"
+              }
+            }
+          }
+        }
+      },
+      "Result (WIN) Callback API call body": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "165464646489" },
+          "user": {
+            "type": "string",
+            "example": "testuser"
+          },
+          "transaction_type": {
+            "type": "string",
+            "example": "WIN"
+          },
+          "reason": {
+            "type": "string",
+            "example": "not_provided"
+          },
+          "amount": {
+            "type": "number",
+            "example": 120
+          },
+          "currency_code": {
+            "type": "string",
+            "example": "KRW"
+          },
+          "transaction_id": {
+            "type": "number",
+            "example": 5500772206906
+          },
+          "transaction_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-07-24 05:52:25"
+          },
+          "round_id": {
+            "type": "string",
+            "example": "5300581668205"
+          },
+          "round_finished": {
+            "type": "boolean",
+            "example": false
+          },
+          "game_id": {
+            "type": "string",
+            "example": "14268"
+          },
+          "user_data": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "example": "test_user"
+              },
+              "amount": {
+                "type": "number",
+                "example": 1500
+              }
+            }
+          },
+          "game_data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "10"
+              },
+              "provider_game_id": {
+                "type": "string",
+                "example": "game10"
+              },
+              "title": {
+                "type": "string",
+                "example": "Hit the Bank Hold and Win"
+              },
+              "platform": {
+                "type": "string",
+                "example": "desktop-and-mobile"
+              },
+              "type": {
+                "type": "string",
+                "example": "slots"
+              },
+              "vendor": {
+                "type": "string",
+                "example": "play-son"
+              },
+              "game_type": {
+                "type": "string",
+                "example": "slots"
+              }
+            }
+          }
+        }
+      },
+      "Result (REFUND) Callback API call body": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "165464646489" },
+          "user": {
+            "type": "string",
+            "example": "testuser"
+          },
+          "transaction_type": {
+            "type": "string",
+            "example": "REFUND"
+          },
+          "reason": {
+            "type": "string",
+            "example": "not_provided"
+          },
+          "amount": {
+            "type": "number",
+            "example": 120
+          },
+          "currency_code": {
+            "type": "string",
+            "example": "KRW"
+          },
+          "transaction_id": {
+            "type": "number",
+            "example": 5500772206906
+          },
+          "transaction_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-07-24 05:52:25"
+          },
+          "round_id": {
+            "type": "string",
+            "example": "5300581668205"
+          },
+          "round_finished": {
+            "type": "boolean",
+            "example": false
+          },
+          "game_id": {
+            "type": "string",
+            "example": "14268"
+          },
+          "user_data": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "example": "test_user"
+              },
+              "amount": {
+                "type": "number",
+                "example": 1500
+              }
+            }
+          },
+          "game_data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "10"
+              },
+              "provider_game_id": {
+                "type": "string",
+                "example": "game10"
+              },
+              "title": {
+                "type": "string",
+                "example": "Hit the Bank Hold and Win"
+              },
+              "platform": {
+                "type": "string",
+                "example": "desktop-and-mobile"
+              },
+              "type": {
+                "type": "string",
+                "example": "slots"
+              },
+              "vendor": {
+                "type": "string",
+                "example": "play-son"
+              },
+              "game_type": {
+                "type": "string",
+                "example": "slots"
+              }
+            }
+          }
+        }
+      },
+      "Callback API call body when betting is canceled": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "165464646489" },
+          "user": {
+            "type": "string",
+            "example": "testuser"
+          },
+          "transaction_type": {
+            "type": "string",
+            "example": "CANCEL"
+          },
+          "reason": {
+            "type": "string",
+            "example": "not_provided"
+          },
+          "amount": {
+            "type": "number",
+            "example": 120
+          },
+          "currency_code": {
+            "type": "string",
+            "example": "KRW"
+          },
+          "transaction_id": {
+            "type": "number",
+            "example": 5500772206906
+          },
+          "transaction_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-07-24 05:52:25"
+          },
+          "round_id": {
+            "type": "string",
+            "example": "5300581668205"
+          },
+          "round_finished": {
+            "type": "boolean",
+            "example": false
+          },
+          "game_id": {
+            "type": "string",
+            "example": "14268"
+          },
+          "user_data": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "example": "test_user"
+              },
+              "amount": {
+                "type": "number",
+                "example": 1500
+              }
+            }
+          },
+          "game_data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "10"
+              },
+              "provider_game_id": {
+                "type": "string",
+                "example": "game10"
+              },
+              "title": {
+                "type": "string",
+                "example": "Hit the Bank Hold and Win"
+              },
+              "platform": {
+                "type": "string",
+                "example": "desktop-and-mobile"
+              },
+              "type": {
+                "type": "string",
+                "example": "slots"
+              },
+              "vendor": {
+                "type": "string",
+                "example": "play-son"
+              },
+              "game_type": {
+                "type": "string",
+                "example": "slots"
+              }
+            }
+          }
+        }
+      },
+      "Callback API call body when get balance": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "testuser"
+          },
+          "balance": {
+            "type": "number",
+            "example": 185.2
+          }
+        }
+      }
+    }
+  }
+}

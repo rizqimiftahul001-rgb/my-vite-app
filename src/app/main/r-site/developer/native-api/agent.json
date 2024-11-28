@@ -1,0 +1,107 @@
+{
+	"openapi": "3.0.2",
+	"servers": [
+		{
+			"url": ""
+		}
+	],
+	"paths": {
+		"/api/agent-money": {
+			"get": {
+				"tags": [
+					"Agent Money API"
+				],
+				"summary": "Get Agent Money",
+				"description": "agent-money",
+				"operationId": "agent-money",
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": 9485,
+									"status": {
+										"error": false,
+										"message": "Agent money fetch success",
+										"timestamp": "2023-08-06T17:08:23.816Z"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Header authorization is required",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {},
+									"status": {
+										"error": true,
+										"error_message": "Header authorization is required",
+										"error_code": "as_01",
+										"timestamp": "2023-08-06T17:06:59.989Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/my-info": {
+			"get": {
+				"tags": [
+					"Agent Information API"
+				],
+				"summary": "Get Agent Information",
+				"description": "my-infor",
+				"operationId": "my-infor",
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {
+										"id": "test_agent",
+										"type": "Distribution",
+										"nickname": "test_agent",
+										"callback_url": "",
+										"balance": 9485,
+										"created_at": "2023-03-23 19:03:41"
+									},
+									"status": {
+										"error": false,
+										"message": "Agent details fetch success",
+										"timestamp": "2023-08-06T17:19:42.484Z"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Header authorization is required",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {},
+									"status": {
+										"error": true,
+										"error_message": "Header authorization is required",
+										"error_code": "as_01",
+										"timestamp": "2023-08-06T17:19:07.061Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

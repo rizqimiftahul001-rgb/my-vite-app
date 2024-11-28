@@ -1,0 +1,371 @@
+.input-labet {
+  background-color: #eaecf4;
+  color: #6e707e;
+  border-radius: 5px 0 0 5px;
+}
+.item-center {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.p-16 {
+  padding: 16px !important;
+}
+.swagger-ui .wrapper {
+  padding: 0;
+  max-width: 100%;
+}
+.block.col-12 .info .main .title {
+  padding-top: 8px;
+}
+.renderedMarkdown h1,
+.swagger-ui .info h2,
+.block.col-12 .info .main .title {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 20px;
+  color: #FFF !important;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+.swagger-ui .info h2 {
+  font-size: 22px;
+}
+.swagger-ui table tbody tr td {
+  font-size: 12px;
+}
+.swagger-ui .authorization__btn.unlocked {
+  padding-left: 5px;
+}
+.swagger-ui .info table {
+  margin-bottom: 15px;
+}
+.swagger-ui .info h3,
+.swagger-ui .info p {
+  color: #778EAA;
+  margin-top: 5px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.swagger-ui table thead tr td,
+.swagger-ui table thead tr th {
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  padding: 10px;
+  border-bottom-color: #2E5383;
+}
+.swagger-ui .renderedMarkdown code {
+  color: #C67AFF;
+  font-family: "Poppins", sans-serif;
+  background: #1A3353;
+  font-size: 13px;
+  white-space: pre-line;
+  line-height: 2.5;
+}
+.error-box {
+  min-height: 80px;
+  width: 100%;
+  padding: 12px;
+  background: rgba(249, 62, 62, 0.1);
+  border: 2px solid #f93e3e;
+  border-radius: 4px;
+  font-size: 20px;
+}
+.title {
+  color: #3b4151;
+  font-size: 36px;
+  margin: 0;
+}
+.error {
+  font-size: 12px;
+}
+.swagger-ui .info {
+  margin: 0;
+}
+.swagger-ui .dialog-ux .modal-ux {
+  background-color: #0D131A;
+  border-color: rgba(254, 146, 25, 0.231);
+}
+.swagger-ui .dialog-ux .modal-ux-header h3 {
+  color: #fff;
+  font-family: "Poppins", sans-serif !important;
+}
+.swagger-ui .dialog-ux .modal-ux-header {
+  border-bottom: 0;
+}
+.swagger-ui .auth-container:last-of-type {
+  padding: 0;
+}
+.modal-ux-content input {
+  min-width: 100% !important;
+  background-color: transparent !important;
+  border-color: #1A3353 !important;
+  color: #fff;
+}
+.modal-ux-header .close-modal svg {
+  fill: #fe9219;
+  width: 30px;
+  height: 30px;
+}
+.swagger-ui .dialog-ux .modal-ux-content h4 {
+  font-family: "Poppins", sans-serif !important;
+  color: #fff;
+  margin-top: 0 !important;
+}
+.swagger-ui .auth-btn-wrapper .btn-done {
+  margin-right: 0;
+  color: #fff;
+}
+.swagger-ui .auth-btn-wrapper {
+  gap: 10px;
+}
+.containerr .scheme-container {
+  padding: 10px 0;
+  margin-bottom: 0;
+  font-family: "Poppins", sans-serif !important;
+  background: transparent;
+}
+.swagger-ui .scheme-container .schemes {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-direction: row;
+}
+.swagger-ui .opblock-tag {
+  color: #fff;
+  font-family: "Poppins", sans-serif !important;
+  border-bottom-color: #1A3353;
+  font-size: 18px;
+}
+.swagger-ui .opblock-tag svg {
+  filter: invert(1);
+}
+.swagger-ui .renderedMarkdown p {
+  font-family: "Poppins", sans-serif !important;
+  color: #778EAA;
+}
+.swagger-ui small .renderedMarkdown p {
+  margin: 0;
+}
+.swagger-ui .scheme-container .schemes>div,
+.servers {
+  width: fit-content;
+}
+.swagger-ui .opblock .opblock-summary-path {
+  font-size: 14px;
+}
+.swagger-ui .opblock .opblock-section-header h4,
+.swagger-ui .opblock .tab-header .tab-item:first-of-type,
+.swagger-ui .response-col_status,
+.swagger-ui .response-control-examples__title,
+.swagger-ui .response-control-media-type__title,
+.swagger-ui .opblock-description-wrapper p,
+.swagger-ui .opblock .opblock-summary-description,
+.swagger-ui a.nostyle,
+.swagger-ui .response-col_status,
+.swagger-ui .tab li button.tablinks,
+.swagger-ui .response-col_links,
+.swagger-ui table.model tr.property-row td,
+.swagger-ui section.models .pointer,
+.swagger-ui .parameter__type,
+.swagger-ui .parameter__name,
+.swagger-ui section.models h4 span,
+.swagger-ui label,
+.swagger-ui .model-title,
+.swagger-ui .servers-title {
+  font-family: "Poppins", sans-serif !important;
+  color: #fff;
+}
+.swagger-ui .model-title {
+  font-weight: 400;
+  font-size: 14px;
+}
+.swagger-ui section.models h4 span {
+  line-height: 1;
+}
+.block-desktop .swagger-ui button {
+  margin-bottom: 0;
+}
+.swagger-ui small {
+  font-family: "Poppins", sans-serif !important;
+}
+.swagger-ui section.models .model-container {
+  padding: 5px 10px;
+}
+.swagger-ui section.models .model-container:first-of-type,
+.swagger-ui section.models .model-container:last-of-type,
+.swagger-ui section.models .model-container {
+  background-color: #0e1b2b;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.responses-inner .response-col_description__inner .renderedMarkdown p {
+  margin: 0;
+}
+.swagger-ui section.models {
+  margin: 0;
+  margin-top: 10px;
+}
+.swagger-ui section.models,
+.swagger-ui section.models.is-open h4 {
+  border-color: #2E5383;
+}
+.swagger-ui .parameters-col_description input {
+  background-color: transparent;
+  border-color: #2E5383;
+}
+.swagger-ui .opblock .tab-header .tab-item.active h4 span:after {
+  left: 40px;
+  height: 3px;
+  width: 100%;
+  bottom: -10px;
+}
+.swagger-ui .opblock.opblock-get .tab-header .tab-item.active h4 span:after {
+  background: #fe9219;
+}
+.swagger-ui .highlight-code>.microlight code,
+.swagger-ui .opblock-body pre.microlight {
+  background-color: rgb(13 19 26) !important;
+}
+.swagger-ui .opblock-body select,
+.swagger-ui .servers>label select {
+  width: fit-content;
+  background-color: #122237;
+  border-color: #2E5383;
+  color: #FFF;
+}
+.swagger-ui .info hgroup.main {
+  margin-bottom: 10px;
+}
+.swagger-ui .auth-wrapper .authorize {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+.swagger-ui .btn.authorize span {
+  padding: 0;
+  padding-right: 5px;
+}
+.swagger-ui .model-toggle,
+.swagger-ui section.models h4 svg,
+.swagger-ui .authorization__btn.unlocked svg {
+  filter: invert(1);
+}
+.swagger-ui section.models .model-box {
+  padding: 0;
+}
+.opblock-summary-control .arrow {
+  display: block;
+  width: 20px;
+  height: 30px;
+  min-width: 20px;
+  filter: invert(1);
+}
+.swagger-ui .table-container,
+.swagger-ui .execute-wrapper,
+.swagger-ui .responses-inner {
+  background-color: #0e1b2b;
+}
+.swagger-ui .opblock .opblock-section-header {
+  background-color: #0e1b2b;
+  min-height: unset;
+}
+.swagger-ui .auth-wrapper .authorize {
+  margin: 0;
+}
+.swagger-ui table tbody tr td {
+  padding: 10px;
+  /* white-space: nowrap; */
+  vertical-align: middle;
+}
+.swagger-ui table.model tr.property-row td {
+  padding-right: 10px;
+}
+.opblock-body .opblock-description .renderedMarkdown p {
+  margin: 0;
+}
+.swagger-ui .opblock-description-wrapper,
+.swagger-ui .opblock .opblock-summary .view-line-link {
+  background: #0e1b2b;
+}
+@media (max-width:767px) {
+  .swagger-ui .info .title {
+    font-size: 26px;
+  }
+  .block.col-12 .info {
+    margin-top: 0;
+  }
+  .swagger-ui .wrapper {
+    padding: 0;
+  }
+}
+@media (max-width:575px) {
+  .swagger-ui .auth-wrapper {
+    justify-content: flex-start;
+  }
+  .swagger-ui .scheme-container .schemes>div {
+    overflow: auto;
+  }
+  .swagger-ui .info table {
+    overflow: auto;
+    display: block;
+    white-space: nowrap;
+    padding: 0;
+  }
+  .swagger-ui .opblock .opblock-summary-method {
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 43px;
+    font-family: "Poppins", sans-serif !important;
+    padding: 5px 0;
+  }
+  .renderedMarkdown h1,
+  .swagger-ui .info h2,
+  .block.col-12 .info .main .title {
+    line-height: 1.5;
+    font-size: 18px;
+  }
+  .swagger-ui .info h3,
+  .swagger-ui .info p,
+  .swagger-ui .renderedMarkdown p {
+    font-size: 13px;
+  }
+  .opblock-tag {
+    flex-wrap: wrap;
+  }
+  .opblock-tag .nostyle span {
+    font-size: 15px;
+  }
+  .swagger-ui .authorization__btn.unlocked svg,
+  .swagger-ui .expand-methods svg,
+  .swagger-ui .expand-operation svg,
+  .opblock-summary-control .arrow {
+    width: 12px;
+    height: 12px;
+  }
+  .swagger-ui .opblock .opblock-summary-description,
+  .swagger-ui .opblock .opblock-summary-path {
+    font-size: 10px;
+  }
+  .swagger-ui .table-container,
+  .swagger-ui .responses-inner,
+  .swagger-ui .opblock .opblock-summary {
+    overflow: auto;
+  }
+  .swagger-ui .opblock-tag small {
+    padding-left: 0;
+  }
+  .opblock-tag a.nostyle {
+    width: 100%;
+  }
+  .swagger-ui .renderedMarkdown code {
+    font-size: 10px;
+    padding: 2px 6px !important;
+  }
+  .swagger-ui .info .title {
+    font-size: 27px;
+  }
+}

@@ -1,0 +1,39 @@
+.input-labet {
+  background-color: #eaecf4;
+  color: #6e707e;
+  border-radius: 5px 0 0 5px;
+}
+.item-center {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.p-16 {
+  padding: 16px !important;
+}
+.small-text{
+    font-size: 12px;
+    color: #6e707e;
+}
+.react-datepicker-popper {
+    z-index: 4 !important;
+}
+.right-margin{
+  margin-right: 10px !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+input[data-autocompleted] {
+    background-color: transparent !important;
+}
+/* .MuiInputLabel-root {
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+} */
+@media(max-width:575px){
+  .textbox{
+    width: 100%;
+  }
+}

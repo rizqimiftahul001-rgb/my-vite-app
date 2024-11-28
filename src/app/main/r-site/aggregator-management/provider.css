@@ -1,0 +1,55 @@
+.aggregator-management-app-container {
+  color: #111827 !important;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 10px;
+  padding: 10px;
+}
+.selected-lang {
+  padding: 12px;
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkbox-label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+.checkbox-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+}
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  background-color: gray !important;
+  width: 30px;
+  /* Adjust checkbox size */
+  height: 30px;
+  /* Adjust checkbox size */
+}
+@media(max-width:575px) {
+  .responsive-table {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  border-top: 1px solid var(--common_color);
+  z-index: 1; 
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); 
+}
+.MuiTableHead-root tr th{
+  border-top: none !important;
+}

@@ -1,0 +1,14 @@
+/** @format */
+.input-labet {
+	background-color: #eaecf4;
+	color: #6e707e;
+	border-radius: 5px 0 0 5px;
+}
+.item-center {
+	display: flex;
+	align-items: center !important;
+	justify-content: center !important;
+}
+.p-16 {
+	padding: 16px !important;
+}

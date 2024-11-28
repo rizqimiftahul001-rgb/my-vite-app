@@ -1,0 +1,84 @@
+.container {
+    width: 80%;
+    margin: auto;
+    /* background-color: #1e1e1e; */
+    /* padding: 20px; */
+    border-radius: 10px;
+    color: #fff;
+}
+.section {
+    margin-bottom: 20px;
+}
+.section h2 {
+   color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0;
+   
+}
+.section table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+.section table, .section th, .section td {
+    border: 1px solid #d2a24c;
+    text-align: center !important;
+}
+.section th, .section td {
+    padding: 10px;
+    text-align: left;
+    color: #fff;
+}
+.section th {
+    background-color: #d2a24c;
+    color: black;
+}
+.cards {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+.card {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 30px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+.score-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+@media (min-width: 900px) {
+
+        .muiltr-xdmu94-MuiContainer-root {
+            max-width: 100%!important;
+            height: 100%;
+        }
+    }
+
+    .overflow-hidden {
+        overflow: hidden;
+        display: none !important;
+    }
+    #fuse-toolbar {
+        background: #0C1F37;
+        border-bottom: 1px solid #424573;
+        border-bottom-left-radius: 15px;
+        display: none;
+    }
+    .md\:min-h-64 {
+        min-height: 6.4rem;
+        display: none;
+    }
+
+    .main_card {
+        padding: 48px 30px !important;
+    }

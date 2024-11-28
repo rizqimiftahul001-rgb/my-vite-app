@@ -1,0 +1,221 @@
+.bold-heading {
+    font-weight: bold;
+    font-size: 20px !important;
+    margin-bottom: 5px;
+  }
+  
+  .dropdown-container {
+    margin-top: 74px;
+    position: absolute;
+    font-size: 14px !important;
+  }
+
+  .datepick{
+    display: inline-flex;
+  }
+
+  /* Increase font size of dropdown items */
+  .dropdown-container .MuiMenuItem-root {
+    font-size: 14px !important; 
+  }
+  
+  /* Remove blue line on hover */
+  .dropdown-container .MuiMenuItem-root:hover {
+    background-color: transparent !important;
+  }
+  .flex-container {
+    display: flex;
+    align-items: center;
+    margin-top: 74px;
+    position: absolute;
+    font-size: 14px !important;
+  }
+  
+  .ui-action-input-container {
+    margin-left: 10px; /* Adjust margin as needed */
+  }
+
+  .table-cell {
+  border: 1px solid #e0e0e0;
+  align-items: center !important;
+}
+
+
+  .ui-action-input-container {
+    display: inline-flex;
+    /* background-color: gray; */
+  }
+  
+  /* Adjust the styling for the buttons and input as needed */
+  .ui-action-input-container button,
+  .ui-action-input-container input {
+    margin-right: 10px; /* Adjust the margin between elements */
+    vertical-align: middle;
+  }
+  
+  .ui-action-input-container select {
+    margin-right: 10px; /* Adjust the margin between elements */
+    vertical-align: middle;
+  }
+  /* .flex-container {
+    display: inline-flex;
+  } */
+  
+  .flex-container > * {
+    display: inline-flex;
+   
+  }
+
+  .datepick input,
+  .datepick select,
+  .datepick button {
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    padding: 8px; 
+    margin-right: 8px; 
+  }
+  
+
+.datepick button {
+  /* color: gray; */
+  background-color: #573ef0 !important;
+  color: #fff
+}
+
+.full-width-border {
+  margin-top: 50px;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.heading-with-border {
+  margin-top: 40px;
+  color: #00B5AD !important;
+  border-bottom: 2px solid #00B5AD;
+  width: 100%;
+  font-weight: bold;
+}
+.heading-with-border2 {
+  margin-top: 20px;
+  color: #F2711C !important;
+  border-bottom: 2px solid #F2711C;
+  width: 100%;
+  font-weight: bold;
+}
+.muiltr-1opyhjn-MuiTableContainer-root {
+  overflow-x: unset !important;
+  max-height: none !important;
+}
+/* tableStyles.css */
+
+.MuiTable-root th, .MuiTable-root td{
+  white-space: normal !important;
+  text-align: center !important;
+}
+.beforeButton {
+  border: 1px solid black;
+  color: black;
+  background-color: #fff !important;
+  border-radius: 4px !important;
+}
+
+.afterButton {
+  border: 1px solid black;
+  color: black;
+  background-color: #fff !important;
+  border-radius: 4px !important; 
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  gap: 10px; 
+}
+
+.blueBackground {
+  background-color: #573ef0 !important;
+  color: white;
+  padding: 8px;
+}
+
+/* styles.css */
+.custom-div {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 27px;
+  background: #F8F8F9;
+}
+
+.custom-div ul {
+  list-style: none; 
+}
+
+.custom-div li {
+  padding-left: 20px; 
+}
+
+.custom-div li::before {
+  content: "\2022"; 
+  color: black; 
+  display: inline-block;
+  width: 2em; 
+}
+.muiltr-5g2394-MuiTable-root {
+ 
+  border-collapse: unset !important;
+
+ 
+}
+.table2{
+  display: flex;
+  flex-wrap: wrap;
+
+  
+}
+
+.table2 .MuiTableContainer-root{
+  overflow-x: unset;
+  
+}
+
+.table3{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.table3 .MuiTableContainer-root{
+  overflow-x: unset;
+  
+}
+
+.table-wrapper {
+  flex: 1; 
+  margin-right: 10px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+  
+  
+  

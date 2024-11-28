@@ -1,0 +1,41 @@
+/** @format */
+.input-labet {
+	background-color: #eaecf4;
+	color: #6e707e;
+	border-radius: 5px 0 0 5px;
+}
+.item-center {
+	display: flex;
+	align-items: center !important;
+	justify-content: center !important;
+}
+.p-16 {
+	padding: 16px !important;
+}
+@media (max-width:767px) {
+	.mobile_flex .p-10.flex .datepikers {
+		width: 100%;
+	}
+	.mobile_flex .datepikers input {
+		width: 100%;
+		max-width: 100%;
+	}
+	.casinoId_input {
+		margin-left: 10px;
+	}
+	.mobile_flex .p-10.flex {
+		width: 100%;
+	}
+	.mobile_flex {
+		flex-wrap: wrap;
+	}
+}
+@media (max-width:575px) {
+	.item-center.searchbtn {
+		padding-left: 10px !important;
+	}
+	.item-center.searchbtn button,
+	.item-center.searchbtn {
+		width: 100%;
+	}
+}

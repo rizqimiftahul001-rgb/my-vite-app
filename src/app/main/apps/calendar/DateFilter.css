@@ -1,0 +1,152 @@
+.date-picker-wrapper {
+    padding: 10px; 
+  }
+  
+  .datebox-wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    /* border: 1px solid #ccc;  */
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+  }
+  
+  .divider {
+    border-left: 1px solid #ccc;
+    height: 100%; 
+    margin: 0 10px; 
+  }
+  
+  .dropdown-options option:hover {
+    background-color: #FE9219 !important;
+    color: white; 
+  }
+  
+  /* .btn-secondary:hover {
+    background-color: #573ef0 !important;
+    color: white; 
+    
+  } */
+  
+  .dropdown-divider {
+    border-top: 1px solid #2e5383; 
+    margin-top: 10px; 
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+    background-color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 1.25rem;
+    margin-top: 0.125rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0; 
+  }
+  
+  .dropdown-option {
+    padding: 0.5rem 1rem; 
+    border: 1px solid #ccc; 
+    cursor: pointer; 
+  }
+  
+  .dropdown-option:hover {
+    background-color: #f0f0f0; 
+  }
+  .dropdown-options option {
+    border: 1px solid #2e5383;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 12px 16px; 
+    margin: 10px;
+    display: block;
+    border-radius: 8px; 
+    text-align: center; 
+    cursor: pointer; 
+    color: #fff
+  }
+  
+  .btn-secondary.dropdown-toggle {
+    display: inline-flex;
+    border: 1px solid #2e5383; 
+    border-radius: 5px; 
+    padding: 3px; 
+    font-weight: bold;
+  }
+  .calendar-icon {
+    margin-right: 6px;
+    color: #fff; 
+  }
+  
+  .dropdown-icon {
+     float: right;
+      margin-left: 4px;
+      height: 20px;
+      margin-top: 7px;
+  }
+  .dropdown-option-name{
+    margin-top: 6px;
+  }
+  
+  .datepikers button svg {
+    width: 36px !important;
+    color: #fff;
+  }
+
+  /* DateFilter.css */
+@media only screen and (max-width: 575px) {
+  .dropdown-menu {
+    position: absolute;
+    width: 77%;
+   
+  }
+  
+  .datepikers button svg {
+    width: 28px !important;
+}
+  .date-wrapper {
+    width: 267px;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .btn {
+    font-size: 14px; 
+    padding: 8px 12px; 
+  }
+
+  .dropdown-toggle {
+    width: 89% !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .calendar-icon {
+    width: 20px; 
+    height: 20px;
+  }
+
+  .dropdown-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .date-picker-wrapper {
+    display: flex;
+    flex-direction: column;
+   
+  }
+
+  .datebox-wrapper {
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .divider {
+    display: none;
+  }
+}

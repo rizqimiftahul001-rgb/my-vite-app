@@ -1,0 +1,225 @@
+{
+	"openapi": "3.0.2",
+	"servers": [
+		{
+			"url": ""
+		}
+	],
+	"paths": {
+		"/api/game-list": {
+			"get": {
+				"tags": [
+					"Game List API"
+				],
+				"summary": "Games List",
+				"description": "gamelist",
+				"operationId": "gamelist",
+				"parameters": [
+					{
+						"name": "type",
+						"in": "query",
+						"description": "Game Type",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "subtype",
+						"in": "query",
+						"description": "Game Sub Type",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "vendor",
+						"in": "query",
+						"description": "Game Vendor",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": [
+										{
+											"gameList": [
+												{
+													"id": 15502,
+													"title": "Crazy Coin Flip",
+													"platform": "desktop-and-mobile",
+													"type": "gameshow",
+													"subtype": "live-casino",
+													"enabled": 1,
+													"fun_mode": 0,
+													"vendor": "evolutionM",
+													"vendorGroups": [],
+													"details": {
+														"thumbnails": {
+															"300x300": "https://media.ttfileserver.com/359/evolutionM/300x300/15502.png",
+															"300x300-gif": "https://media.ttfileserver.com/359/evolutionM/300x300/15502.gif",
+															"450x345-jpg": "https://media.ttfileserver.com/359/evolutionM/450x345/15502.jpg",
+															"450x345-gif": "https://media.ttfileserver.com/359/evolutionM/450x345/15502.gif"
+														}
+													},
+													"operator_id": "skstg"
+												},
+												{
+													"id": 63996,
+													"title": "Mega Bola Da Sorte",
+													"platform": "desktop-and-mobile",
+													"type": "gameshow",
+													"subtype": "live-casino",
+													"enabled": 1,
+													"fun_mode": 0,
+													"vendor": "evolutionM",
+													"vendorGroups": [],
+													"details": {
+														"thumbnails": {
+															"300x300": "https://media.ttfileserver.com/359/evolutionM/300x300/63996.png",
+															"300x300-gif": "https://media.ttfileserver.com/359/evolutionM/300x300/63996.gif",
+															"450x345-jpg": "https://media.ttfileserver.com/359/evolutionM/450x345/63996.jpg",
+															"450x345-gif": "https://media.ttfileserver.com/359/evolutionM/450x345/63996.gif"
+														}
+													},
+													"operator_id": "skstg"
+												}
+											]
+										}
+									],
+									"status": {
+										"error": false,
+										"message": "Game list fetch successfully",
+										"timestamp": "2023-08-07T02:54:08.144Z"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Header authorization is required",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {},
+									"status": {
+										"error": true,
+										"error_message": "Header authorization is required",
+										"error_code": "as_01",
+										"timestamp": "2023-08-07T02:53:19.180Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/lobby-list": {
+			"get": {
+				"tags": [
+					"Lobbie List API"
+				],
+				"summary": "Lobbies List",
+				"description": "lobbieslist",
+				"operationId": "lobbieslist",
+				"parameters": [
+					{
+						"name": "lobby_id",
+						"in": "query",
+						"description": "Lobby ID",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "vendor",
+						"in": "query",
+						"description": "Lobbie Vendor",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": [
+										{
+											"lobby_id": "evolution_game_shows",
+											"vendor": "evolution",
+											"platform": "desktop-and-mobile",
+											"subtype": "live-casino",
+											"details": {
+												"thumbnails": {
+													"300x300": "https://media.ttfileserver.com/359/evolution/300x300/evolution_game_shows.png",
+													"300x300-gif": "https://media.ttfileserver.com/359/evolution/300x300/evolution_game_shows.gif",
+													"450x345-jpg": "https://media.ttfileserver.com/359/evolution/450x345/evolution_game_shows.jpg",
+													"450x345-gif": "https://media.ttfileserver.com/359/evolution/450x345/evolution_game_shows.gif"
+												}
+											},
+											"operator_id": "skstg"
+										},
+										{
+											"lobby_id": "evolution_reward_games",
+											"vendor": "evolution",
+											"platform": "desktop-and-mobile",
+											"subtype": "live-casino",
+											"details": {
+												"thumbnails": {
+													"300x300": "https://media.ttfileserver.com/359/evolution/300x300/evolution_reward_games.png",
+													"300x300-gif": "https://media.ttfileserver.com/359/evolution/300x300/evolution_reward_games.gif",
+													"450x345-jpg": "https://media.ttfileserver.com/359/evolution/450x345/evolution_reward_games.jpg",
+													"450x345-gif": "https://media.ttfileserver.com/359/evolution/450x345/evolution_reward_games.gif"
+												}
+											},
+											"operator_id": "skstg"
+										}
+									],
+									"status": {
+										"error": false,
+										"message": "Lobbie list fetch successfully",
+										"timestamp": "2023-08-07T03:05:26.833Z"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Header authorization is required",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {},
+									"status": {
+										"error": true,
+										"error_message": "Header authorization is required",
+										"error_code": "as_01",
+										"timestamp": "2023-08-07T03:05:16.217Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,99 @@
+.input-labet {
+  background-color: #eaecf4;
+  color: #6e707e;
+  border-radius: 5px 0 0 5px;
+}
+.item-center {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.p-16 {
+  padding: 16px !important;
+}
+.closeBTN {
+  background-color: #573ef0 !important;
+  color: #ffffff !important;
+  border-radius: 5px !important;
+}
+/* button.MuiButton-outlined, button.MuiButton-contained {
+   border-radius: 0 !important;
+} */
+.modal_form_Lable {
+  color: #fff;
+  ;
+  font-weight: bold;
+  font-size: 12px;
+  text-wrap: nowrap;
+}
+@media screen and (max-width: 575px) {
+  .modal-content {
+    width: 100% !important;
+    max-height: 1000px !important;
+    margin: 10% auto;
+    overflow-x: auto;
+  }
+  .muiltr-1yr6i4s-MuiGrid2-root{
+    width: 80% !important;
+  }
+}
+@media (max-width: 575px) {
+  .create_operater_modal {
+
+    width: 100% !important;
+    max-height: 1000px !important;
+    margin: 10% auto;
+    overflow-x: auto;
+  
+
+  } 
+}
+.muiltr-1mhtlkv {
+  flex-flow: nowrap !important;
+}
+
+  .muiltr-sftz05-MuiGrid2-root{
+    flex-wrap: nowrap !important;
+  }
+  .muiltr-sw4laz {
+    min-width: none !important;
+  }
+  .create_operater_modal{
+    width: 80% !important;
+  }
+
+  .table-tree-header {
+    color: white;
+    font-weight: bold;
+    width:fit-content;
+    /* font-size:medium; */
+    background-color: black; /* Optional: Set a background color for better visibility */
+  }
+  
+  /* .muiltr-ip6gzi-CommonCell{
+    align-items: center;
+  } */
+
+  .muiltr-1u8sedw-Icon{
+    font-size: xx-large;
+    color: white;
+    font-weight: bold;
+  }
+
+  .tableContainer {
+    overflow-x: auto; /* or use scroll */
+    background-color: black;
+    width: 100%; /* Ensure the container takes the full width of its parent */
+  }
+
+  .treeBox{
+    font-weight:"bold";
+    color:"white";
+    text-align:"center"
+  }
+  
+  .tableTreeData {
+    width: 120%; /* Adjust as needed to ensure the table is wider than the container */
+    background-color: black;
+  }
+  

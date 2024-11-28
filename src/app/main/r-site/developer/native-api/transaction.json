@@ -1,0 +1,97 @@
+{
+	"openapi": "3.0.2",
+	"servers": [
+		{
+			"url": "https://api.supremex.co/"
+		}
+	],
+    "paths": {
+		"/api/history": {
+			"get": {
+				"tags": ["Bet History API"],
+				"summary": "Get Game Play History",
+				"description": "Get History",
+				"operationId": "GetHistory",
+                "parameters": [
+					{
+						"name": "pages",
+						"in": "query",
+						"description": "Number of Pages",
+						"required": false,
+						"schema": {
+							"type": "number"
+						}
+					}
+                ],
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"type": "object",
+							 	"example": {
+									"data": [
+										{
+											"status": false,
+											"transaction_type": "BET",
+											"amount": 0.2,
+											"currency_code": "EUR",
+											"transaction_id": "1068454",
+											"transaction_timestamp": "2023-07-08 23:15:05",
+											"round_id": "543733",
+											"round_finished": "false",
+											"game_id": 16946,
+											"user_id": "test01",
+											"extra": {
+												"before_money": "182.80",
+												"after_money": "182.60"
+											}
+										},
+										{
+											"status": true,
+											"transaction_type": "LOSS",
+											"amount": 0,
+											"currency_code": "EUR",
+											"transaction_id": "1068455",
+											"transaction_timestamp": "2023-07-08 23:15:10",
+											"round_id": "543733",
+											"round_finished": "true",
+											"game_id": 16946,
+											"user_id": "test01",
+											"extra": {
+												"before_money": "182.60",
+												"after_money": "182.60"
+											}
+										}
+									],
+									"status": {
+										"error": false,
+										"message": "History data fetch successfully",
+										"timestamp": "2023-08-07T01:47:04.834Z"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Header authorization is required",
+						"content": {
+							"application/json": {
+								"type": "object",
+							 	"example": {
+									"data": {},
+									"status": {
+										"error": true,
+										"error_message": "Header authorization is required",
+										"error_code": "as_01",
+										"timestamp": "2023-08-07T01:45:28.049Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+    }
+}

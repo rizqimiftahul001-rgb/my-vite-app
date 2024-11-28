@@ -1,0 +1,59 @@
+.input-labet {
+    background-color: #eaecf4;
+    color: #6e707e;
+    border-radius: 5px 0 0 5px;
+}
+.item-center {
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.text-buttons .plusbtn:hover,
+.text-buttons .plusbtn:active,
+.text-buttons .minusbtn:hover,
+.text-buttons .minusbtn:active {
+    background-color: #b9b9b942;
+}
+.text-buttons .minusbtn,
+.text-buttons .plusbtn {
+    border: 1px solid #ddd;
+    border-left: 0;
+    background-color: transparent;
+}
+.editform {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.swal-popup {
+    background-color: black !important;
+    color: white !important;
+  }
+  
+  .swal-title {
+    color: white !important;
+  }
+  
+  .swal-text {
+    color: white !important;
+  }
+
+.editform .bottom_btns {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+.editform .edit_textfield {
+    width: 48%;
+    margin-bottom: 10px;
+}
+@media(max-width:575px) {
+    .editform .bottom_btns,
+    .editform .edit_textfield {
+        width: 100%;
+    }
+}

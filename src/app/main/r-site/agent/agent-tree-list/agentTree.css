@@ -1,0 +1,15 @@
+/* .MuiInputLabel-root {
+    font-size: 1.6rem !important;
+    font-weight: 600 !important;
+} */
+.tree_block .MuiTreeItem-content {
+    padding: 10px !important;
+}
+
+/* .tree_block {
+    height: 100%;
+} */
+
+.treeblock .Mui-expanded.Mui-selected .MuiTreeItem-label {
+    color: #fff;
+}

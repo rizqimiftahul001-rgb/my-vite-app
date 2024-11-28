@@ -1,0 +1,1894 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Aslan Gaming Gateway Transfer API v1.0",
+    "version": "1.0.1",
+    "description": "\n\n This is a page where you can test the transfer API. Since it is linked to real data, please test with caution when creating users and paying money.\n\n # Example code\n\n  You can use the postman or CURL command  by converting it to any preferable language such as php python nodejs at [https://curlconverter.com/](https://curlconverter.com/) \n\n # CORS error\n\n CORS errors may occur for IPs that do not request \"firewall exception\" registration. Please connect to the \"Server IP\" registered as a firewall exception, or test it using the displayed CURL command. After integration and test completion, be sure to \"Set IP Allowed for API Calls\" If you face any issue please contact us though service desk.\n\n\n\n After integration is completed, be sure to whitelist the IP to call the API in \"My Page\" > \"Set API Call Allowed IP\".\n\n # Required HTTP headers\n\n All HTTP requests related to the use of the API must include the following HTTP headers.:\n\n| name | value | example |\n|-----|-----|-------|\n| `Authorization`  |  `Bearer { API KEY}`  | `Authorization: Bearer 792d58d1-a256-4bbe-bf7a-24080615f661`    |\n\n  A header is required \uD83D\uDD10 if there is an  icon on the right .Authorization\n\n # How to pass authentication information when testing\n\n When testing on this page, 🔓 you can test by clicking the icon at the bottom right and entering the provided token to use.\n\n # How to play game for testing \n Before play game you should want deposit money using deposit API. \n\n Also you must be add `game_id` or `lobby_id` as a parameter. you can get that details using game list API and lobby list API. Other parameters are `user_id` and `device` .\n\n # Result message definition:\n\n It returns the HTTP Status Code for normal results and 200 the HTTP Status Code for abnormal situations, and displays the parameter where the error occurred and the error as shown in the example below.\n\n| name | value |\n|-----|-------|\n| `Return Data format`  |  `JSON`  |\n| `Return Data structure`  |  `{ data: response data, status: { error: error status, message: response message, timestamp: responce time } }`  | \n\n # Korean encoding \n\n All data, including all Hangul and special characters, UTF-8 without BOM must be used, especially those who develop on Windows Server, please check this. \n\n If an EUR-KR request is made using encoding, it may be blocked due to the inability to use the normal service or the occurrence of periodic errors.\n\n # Time zone \n\n The time zone of this API service uses a dynamic Time Zone that is selected by the parent agent, EX: If the parent agent selects Korean time (Asia/Seoul) it will inherit to child agents. \n\n Parent selected timezone cannot be changed by child agents. \n\n # API development flow \n\n ## Get an API KEY \n\n ### Add the API KEY and header information `/my-info` and call to check if your account information is loaded normally \n\n `/game-list` Use the vendor, type params to check value. \n\n `/lobby-list` Use the vendor, lobby_id params to check value. \n\n `/playGame` to get the game launch link. In PHP frameworks currency word is encoding please use `json_decode()` function or if you are using core php directly return to game url \n\n If you want to access the game directly `/game-list`, or if you want to access the lobby where the game is listed, get the value `/lobby-list` for access through. \n\n When using \"Transfer\", add the user's money. `/deposit` \n\n When using \"Seamless\", please implement an extensible API. `/changeBalance` "
+  },
+  "servers": [
+    {
+      "url": "",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/api/agent-money": {
+      "get": {
+        "tags": [
+          "Agent"
+        ],
+        "summary": "Get Agent Money",
+        "description": "URL : `/agent-money`",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "operationId": "agent-money",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "agent_id": "agent_name",
+                    "amount": 15028
+                  },
+                  "status": {
+                    "error": false,
+                    "message": "Agent money fetch success",
+                    "timestamp": "2023-08-06T17:08:23.816Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-06T17:06:59.989Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/my-info": {
+      "get": {
+        "tags": [
+          "Agent"
+        ],
+        "summary": "Get Agent Information",
+        "description": "URL : `/my-info`",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "operationId": "my-infor",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "agent_id": "jonh",
+                    "type": "Distribution",
+                    "nickname": "jonh",
+                    "balance_callback_URL": "https://your-host/api/balance",
+                    "change_balance_callback_kURL": "https://your-host/api/changeBalance",
+                    "balance": 266238,
+                    "created_at": "2023-07-21 19:45:11"
+                  },
+                  "status": {
+                    "error": false,
+                    "message": "Agent details fetch success",
+                    "timestamp": "2023-08-06T17:19:42.484Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-06T17:19:07.061Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/create-user": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create User",
+        "description": "URL : `/create-user`",
+        "operationId": "create-user",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "body",
+            "description": "Casino User Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "user_id": "test_user",
+                    "balance_amount": 0,
+                    "currency": "KRW",
+                    "created_at": "2023-08-07 00:37:06"
+                  },
+                  "status": {
+                    "error": false,
+                    "message": "Casino user created successfully",
+                    "timestamp": "2023-08-06T15:37:07.000Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-06T15:34:05.480Z"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Casino user alredy exit",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-06T15:34:05.480Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user-money": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get User Money",
+        "description": "URL : `/user-money`",
+        "operationId": "user-money",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Casino User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "user_id": "test01",
+                    "amount": 15600
+                  },
+                  "status": {
+                    "error": false,
+                    "message": "User money fetched successfully",
+                    "timestamp": "2023-08-06T16:10:26.288Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User money fetched failed",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "User money fetched failed",
+                    "error_code": "as_09",
+                    "timestamp": "2023-08-06T16:09:15.863Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/all-user-money": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get All User Money",
+        "description": "URL : `/all-user-money`",
+        "operationId": "all-user-money",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "1227": 1,
+                    "testd_tom": 525,
+                    "neo1": 3622663
+                  },
+                  "status": {
+                    "error": false,
+                    "message": "User money fetched successfully",
+                    "timestamp": "2024-04-03T08:24:23.981Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User money fetched failed",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "User money fetched failed",
+                    "error_code": "as_09",
+                    "timestamp": "2024-04-03T08:24:23.981Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game-list": {
+      "get": {
+        "tags": [
+          "Game information inquiry"
+        ],
+        "summary": "Games List",
+        "description": "URL : `/game-list`",
+        "operationId": "gamelist",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Type: `'andarbahar', 'bacbo', 'baccarat', 'bingo', 'blackjack', 'cards', 'crashgame', 'dice', 'dragontiger', 'gameshow', 'instantgame', 'interactivegame', 'keno', 'live', 'lobby', 'lottery', 'other', 'poker', 'roulette', 'scratchcards', 'shooting', 'sicbo', 'slots', 'virtual', 'war'`",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "game_type",
+            "in": "query",
+            "description": "Game Type: `'slots', 'live-casino', 'etc'`",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "query",
+            "description": "Game Vendor: `'pgsoft', 'kagaming', 'habanero', 'ezugix', 'nolimitcity', 'pragmatic-virtual', 'rocketman', 'bfgames', 'ezugi', 'evoplay', 'popok', 'booongo', 'pragmatic', 'evolution', 'onetouch', 'red tiger', 'redrake', 'onetouch-live', 'bigtimegaming', 'pragmatic-live', 'skywind', 'skywind-live', 'dreamtech', '7777', 'intouch-games', 'net ent', 'micro-gaming', 'ezugiZ', 'micro-gaming-live', 'iconix', 'play-son', 'cq9', 'bota', 'yggdrasil', 'dreamgame', 'WM casino', 'vivo', 'wazdan', 'play-star', 'playngo', 'relax-gaming', 'tg', 'asia-gaming', 'triple-profit-gaming', 'blueprint-gaming', 'thunderkick', 'nolimit-city', 'mobilots', 'dragoon-soft', 'betgames-tv', '1x2-gaming', 'elk-studios', 'taishan', 'dowin', 'ReelKingdom' , 'gameArt', 'k-dragon' , 'avatarux', 'PlayPearls', 'hacksaw', 'playTech-live', 'playTech', 'veda-sports', 'motivation-gaming', 'onlyplay', 'astar'`",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Select a search sort Possible values ('asc,'desc')",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": [
+                    {
+                      "gameList": [
+                        {
+                          "id": "7500",
+                          "provider_game_id": "game7500",
+                          "title": "Pirate Pays",
+                          "platform": "desktop-and-mobile",
+                          "type": "slots",
+                          "game_type": "slots",
+                          "game_enabled": true,
+                          "vendor": "bigtimegaming",
+                          "details": {
+                            "thumbnails": {
+                              "300x300": "https://media.ttfileserver.com/359/bigtimegaming/300x300/7500.png",
+                              "300x300-gif": "https://media.ttfileserver.com/359/bigtimegaming/300x300/7500.gif",
+                              "450x345-jpg": "https://media.ttfileserver.com/359/bigtimegaming/450x345/7500.jpg",
+                              "450x345-gif": "https://media.ttfileserver.com/359/bigtimegaming/450x345/7500.gif"
+                            }
+                          },
+                          "langs": [
+                            {
+                              "name": "파이렛 페이스",
+                              "lang": "ko"
+                            },
+                            {
+                              "name": "Pirate Pays",
+                              "lang": "en"
+                            }
+                          ],
+                          "created_at": "2023-11-10 01:43:55"
+                        },
+                        {
+                          "id": "7501",
+                          "provider_game_id": "game7501",
+                          "title": "Pop",
+                          "platform": "desktop-and-mobile",
+                          "type": "slots",
+                          "game_type": "slots",
+                          "game_enabled": true,
+                          "vendor": "bigtimegaming",
+                          "details": {
+                            "thumbnails": {
+                              "300x300": "https://media.ttfileserver.com/359/bigtimegaming/300x300/7501.png",
+                              "300x300-gif": "https://media.ttfileserver.com/359/bigtimegaming/300x300/7501.gif",
+                              "450x345-jpg": "https://media.ttfileserver.com/359/bigtimegaming/450x345/7501.jpg",
+                              "450x345-gif": "https://media.ttfileserver.com/359/bigtimegaming/450x345/7501.gif"
+                            }
+                          },
+                          "langs": [
+                            {
+                              "name": "팝",
+                              "lang": "ko"
+                            },
+                            {
+                              "name": "Pop",
+                              "lang": "en"
+                            }
+                          ],
+                          "created_at": "2023-11-10 01:43:55"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": {
+                    "error": false,
+                    "message": "Game list fetch successfully",
+                    "timestamp": "2023-08-07T02:54:08.144Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-07T02:53:19.180Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lobby-list": {
+      "get": {
+        "tags": [
+          "Game information inquiry"
+        ],
+        "summary": "Lobbies List",
+        "description": "URL : `/lobby-list`",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "operationId": "lobbieslist",
+        "parameters": [
+          {
+            "name": "lobby_id",
+            "in": "query",
+            "description": "Lobby ID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "query",
+            "description": "Lobbie Vendor: `'bota', 'cq9', 'evolution', 'ezugi', 'pragmatic-live', 'pragmatic-virtual', 'onetouch-live', 'micro-gaming-live', 'dreamgame', 'asia-gaming', 'taishan', 'dowin', 'WM casino', 'playTech-live', 'motivation-gaming', 'vivo', 'skywind-live'`",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": [
+                    {
+                      "lobbyList": [
+                        {
+                          "lobby_id": "evolution_roulette",
+                          "subtype": "live-casino",
+                          "platform": "desktop-and-mobile",
+                          "lobby_enabled": true,
+                          "vendor": "evolution",
+                          "details": {
+                            "thumbnails": {
+                              "300x300": "https://media.ttfileserver.com/359/evolution/300x300/evolution_roulette.png",
+                              "300x300-gif": "https://media.ttfileserver.com/359/evolution/300x300/evolution_roulette.gif",
+                              "450x345-jpg": "https://media.ttfileserver.com/359/evolution/450x345/evolution_roulette.jpg",
+                              "450x345-gif": "https://media.ttfileserver.com/359/evolution/450x345/evolution_roulette.gif"
+                            }
+                          }
+                        },
+                        {
+                          "lobby_id": "ezugi_lottery",
+                          "subtype": "live-casino",
+                          "platform": "desktop-and-mobile",
+                          "lobby_enabled": true,
+                          "vendor": "ezugi",
+                          "details": {
+                            "thumbnails": {
+                              "300x300": "https://media.ttfileserver.com/361/ezugi/300x300/ezugi_lottery.png",
+                              "300x300-gif": "https://media.ttfileserver.com/361/ezugi/300x300/ezugi_lottery.gif",
+                              "450x345-jpg": "https://media.ttfileserver.com/361/ezugi/450x345/ezugi_lottery.jpg",
+                              "450x345-gif": "https://media.ttfileserver.com/361/ezugi/450x345/ezugi_lottery.gif"
+                            }
+                          }
+                        },
+                        {
+                          "lobby_id": "ezugi_poker",
+                          "subtype": "live-casino",
+                          "platform": "desktop-and-mobile",
+                          "lobby_enabled": true,
+                          "vendor": "ezugi",
+                          "details": {
+                            "thumbnails": {
+                              "300x300": "https://media.ttfileserver.com/361/ezugi/300x300/ezugi_poker.png",
+                              "300x300-gif": "https://media.ttfileserver.com/361/ezugi/300x300/ezugi_poker.gif",
+                              "450x345-jpg": "https://media.ttfileserver.com/361/ezugi/450x345/ezugi_poker.jpg",
+                              "450x345-gif": "https://media.ttfileserver.com/361/ezugi/450x345/ezugi_poker.gif"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "status": {
+                    "error": false,
+                    "message": "Lobbie list fetch successfully",
+                    "timestamp": "2023-09-19T05:27:39.568Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-07T03:05:16.217Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/vendor-list": {
+      "get": {
+        "tags": [
+          "Game information inquiry"
+        ],
+        "summary": "Get Vendor List",
+        "description": "URL : `/vendor-list`",
+        "operationId": "vendorlist",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": [
+                    {
+                      "status": true,
+                      "vendor_name": "pragmatic",
+                      "vendor_name_kr": "프라그마틱 플레이",
+                      "game_type": "slots",
+                      "type": [
+                        "slots"
+                      ],
+                      "game_list": true,
+                      "lobby_list": false
+                    },
+                    {
+                      "status": true,
+                      "vendor_name": "evolution",
+                      "vendor_name_kr": "에볼루션",
+                      "game_type": "live-casino",
+                      "type": [
+                        "bacbo",
+                        "sicbo",
+                        "roulette",
+                        "fantan",
+                        "baccarat",
+                        "megaball",
+                        "live-casino",
+                        "powerball",
+                        "blackjack",
+                        "dragontiger",
+                        "americanroulette",
+                        "poker",
+                        "sidebetcity",
+                        "topcard",
+                        "dice"
+                      ],
+                      "game_list": true,
+                      "lobby_list": true
+                    }
+                  ],
+                  "status": {
+                    "error": false,
+                    "message": "Vendor list fetch successfully",
+                    "timestamp": "2024-05-31T05:24:01.456Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Vendor List fetched failed",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": [],
+                  "status": {
+                    "error": false,
+                    "message": "Vendor list fetch successfully",
+                    "timestamp": "2024-05-31T05:24:01.456Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/playGame": {
+      "get": {
+        "tags": [
+          "Game Access API"
+        ],
+        "summary": "Game Play URL",
+        "description": "URL : `/playGame` \n\n  PHP development needs to json_decode the response",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "operationId": "playGame",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Casino User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "game_id or lobby_id",
+            "in": "query",
+            "description": "Casino Game ID/ Lobby ID - You can only use one game_id or lobby_id at a time",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device",
+            "in": "query",
+            "description": "desktop or mobile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "method": "GET",
+                    "url": "https://staging-wallet-launch1.semper7.net/?token=e3929f758d994861914cd13257&mode=real&language=ko&device=mobile&lobby_id=evolution_game_shows"
+                  },
+                  "status": {
+                    "error": false,
+                    "message": "Game Play URL fetch successfully",
+                    "timestamp": "2023-09-02T09:32:57.397Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "user_id is required",
+                    "error_code": "as_17",
+                    "timestamp": "2023-08-07T03:23:43.586Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/deposit": {
+      "post": {
+        "tags": [
+          "Money Conversion API"
+        ],
+        "summary": "Charge",
+        "description": "URL : `/deposit`",
+        "operationId": "deposit",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "body",
+            "description": "Casino User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "money",
+            "in": "body",
+            "description": "Charge Amount",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "user_id": "test01",
+                    "amount": 15620
+                  },
+                  "status": {
+                    "error": false,
+                    "message": "Casino user deposit successfully",
+                    "timestamp": "2023-08-07T02:04:04.667Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "user_id is required",
+                    "error_code": "as_08",
+                    "timestamp": "2023-08-07T02:00:09.163Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/withdrawal": {
+      "post": {
+        "tags": [
+          "Money Conversion API"
+        ],
+        "summary": "Excharge",
+        "description": "URL : `/withdrawal`",
+        "operationId": "withdrawal",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "body",
+            "description": "Casino User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "money",
+            "in": "body",
+            "description": "Amount",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "user_id": "test01",
+                    "amount": 15640
+                  },
+                  "status": {
+                    "error": false,
+                    "message": "Casino user withdraw successfully",
+                    "timestamp": "2023-08-07T02:52:11.493Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "user_id is required",
+                    "error_code": "as_08",
+                    "timestamp": "2023-08-07T02:22:23.647Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/withdraw-all": {
+      "post": {
+        "tags": [
+          "Money Conversion API"
+        ],
+        "summary": "Excharge",
+        "description": "URL : `/withdraw-all`",
+        "operationId": "withdrawalall",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "body",
+            "description": "Casino User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "user_id": "test5",
+                    "amount": 0,
+                    "withdraw_amount": 5000
+                  },
+                  "status": {
+                    "error": false,
+                    "message": "Casino user withdraw successfully",
+                    "timestamp": "2024-06-11T05:31:50.142Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "User not found",
+                    "error_code": "as_18",
+                    "timestamp": "2024-06-11T05:35:19.887Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/history": {
+      "get": {
+        "tags": [
+          "Transaction History"
+        ],
+        "summary": "Get Game Play History",
+        "description": "URL : `/history`\n\n Only can get previous 7 days data. \n\n You can use only page or index parameter. Not allowed to use both together.\n\n Default ordering is desc.",
+        "operationId": "GetHistory",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of records per page (up to 1000)",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pages",
+            "in": "query",
+            "description": "Number of pages.also you can’t use pages with index",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "index",
+            "in": "query",
+            "description": "Index parameter can use without pages parameter. also you can use `id` of history object for index parameter",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "YYYY-MM-DD hh:mm:ss (Based on your agent timezone. Find Your timezone from My Page -> Time Zone)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "YYYY-MM-DD hh:mm:ss (Based on your agent timezone. Find Your timezone from My Page -> Time Zone)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "user_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "query",
+            "description": "vendor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Game Type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "round_id",
+            "in": "query",
+            "description": "Game Round ID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Select a search sort Possible values ('asc,'desc')",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": [
+                    {
+                      "status": true,
+                      "transaction_type": "BET",
+                      "amount": 200,
+                      "currency_code": "KRW",
+                      "transaction_id": "828031540501667962",
+                      "transaction_timestamp": "2024-03-05 13:16:45",
+                      "round_id": "828031540501667937",
+                      "round_finished": "false",
+                      "game_id": "laluck7554",
+                      "game_name": "Lucky Lightning",
+                      "vendor": "ReelKingdom",
+                      "created_at": "2024-03-05 13:16:45",
+                      "extra_history": {
+                        "success": true,
+                        "type": "url",
+                        "data": "https://0hzk3ndm.wdituvgw.biz/gs2c/gameHistoryDetailForApi.do?otp=3PGsg6MS1rmg8rJp9axWnpdvkRo9hRhWxFZVsP1W2X9sSXOx9hlwSdyQy9vNTWk7&playSessionId=38676708282141&stylename=veda_swix"
+                      },
+                      "extra":{
+                          "before_money": "740",
+                          "after_money": "760"
+                      }
+                    },
+                    {
+                      "status": true,
+                      "transaction_type": "BET",
+                      "amount": 93656.25,
+                      "currency_code": "KRW",
+                      "transaction_id": "5500815384458",
+                      "transaction_timestamp": "2023-12-07 22:04:52",
+                      "round_id": "5300602286020",
+                      "round_finished": "false",
+                      "game_id": "16185",
+                      "game_name": "Speed Baccarat O",
+                      "vendor": "evolution",
+                      "created_at": "2023-12-07 22:04:52",
+                      "extra_history": {
+                        "success": true,
+                        "type": "json",
+                        "data": {
+                          "id": "179e8e6646da13ccdd13596a",
+                          "startedAt": "2023-12-07T13:04:39.120Z",
+                          "settledAt": "2023-12-07T13:05:00.266Z",
+                          "status": "Resolved",
+                          "dealer": {
+                            "uid": "tts149114_______",
+                            "name": "Mariami"
+                          },
+                          "result": {
+                            "banker": {
+                              "score": 1,
+                              "cards": [
+                                "2D",
+                                "JD",
+                                "9D"
+                              ]
+                            },
+                            "player": {
+                              "score": 4,
+                              "cards": [
+                                "6C",
+                                "8C",
+                                "TH"
+                              ]
+                            },
+                            "outcome": "Player"
+                          },
+                          "gameProvider": "evolution",
+                          "gameType": "baccarat",
+                          "table": {
+                            "id": "ovu5fbxm4ccmypmb",
+                            "name": "Speed Baccarat O"
+                          },
+                          "participants": [
+                            {
+                              "screenName": "hi11_772199",
+                              "playerGameId": "179e8e6646da13ccdd13596a-rrb3opiilujqfgae",
+                              "sessionId": "rrb3opiilujqfgaerrcgbozko3f3nfd44bab09e9",
+                              "casinoSessionId": "2f714a0bd3da47bba3830f7d04b69bcd20231207220357",
+                              "currencyRateVersion": "rrazhytamqnaaabz",
+                              "playerId": "20000211094",
+                              "bets": [
+                                {
+                                  "transactionId": "701803485592709319",
+                                  "description": "",
+                                  "code": "BAC_Banker",
+                                  "stake": 93656.25,
+                                  "payout": 0,
+                                  "placedOn": "2023-12-07T13:04:52.658Z"
+                                }
+                              ],
+                              "configOverlays": [],
+                              "playMode": "RealMoney"
+                            }
+                          ]
+                        }
+                      },
+                      "extra":{
+                        "before_money": "740",
+                        "after_money": "760"
+                    }
+                    },
+                    {
+                      "status": true,
+                      "transaction_type": "WIN",
+                      "amount": 93656.25,
+                      "currency_code": "KRW",
+                      "transaction_id": "5500815384451",
+                      "transaction_timestamp": "2023-12-07 22:04:52",
+                      "round_id": "5300602286020",
+                      "round_finished": "false",
+                      "game_id": "16185",
+                      "game_name": "Speed Baccarat O",
+                      "vendor": "evolution",
+                      "created_at": "2023-12-07 22:04:52",
+                      "extra_history": {
+                        "success": true,
+                        "type": "json",
+                        "data": {
+                          "id": "179e8e6646da13ccdd13596a",
+                          "startedAt": "2023-12-07T13:04:39.120Z",
+                          "settledAt": "2023-12-07T13:05:00.266Z",
+                          "status": "Resolved",
+                          "dealer": {
+                            "uid": "tts149114_______",
+                            "name": "Mariami"
+                          },
+                          "result": {
+                            "banker": {
+                              "score": 1,
+                              "cards": [
+                                "2D",
+                                "JD",
+                                "9D"
+                              ]
+                            },
+                            "player": {
+                              "score": 4,
+                              "cards": [
+                                "6C",
+                                "8C",
+                                "TH"
+                              ]
+                            },
+                            "outcome": "Player"
+                          },
+                          "gameProvider": "evolution",
+                          "gameType": "baccarat",
+                          "table": {
+                            "id": "ovu5fbxm4ccmypmb",
+                            "name": "Speed Baccarat O"
+                          },
+                          "participants": [
+                            {
+                              "screenName": "hi11_772199",
+                              "playerGameId": "179e8e6646da13ccdd13596a-rrb3opiilujqfgae",
+                              "sessionId": "rrb3opiilujqfgaerrcgbozko3f3nfd44bab09e9",
+                              "casinoSessionId": "2f714a0bd3da47bba3830f7d04b69bcd20231207220357",
+                              "currencyRateVersion": "rrazhytamqnaaabz",
+                              "playerId": "20000211094",
+                              "bets": [
+                                {
+                                  "transactionId": "701803485592709319",
+                                  "description": "",
+                                  "code": "BAC_Banker",
+                                  "stake": 93656.25,
+                                  "payout": 0,
+                                  "placedOn": "2023-12-07T13:04:52.658Z"
+                                }
+                              ],
+                              "configOverlays": [],
+                              "playMode": "RealMoney"
+                            }
+                          ]
+                        }
+                      },
+                      "extra":{
+                        "before_money": "740",
+                        "after_money": "760"
+                    }
+                    }
+                  ],
+                  "status": {
+                    "error": false,
+                    "message": "History data fetch successfully",
+                    "timestamp": "2023-08-07T01:47:04.834Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-07T01:45:28.049Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/set-bet-limit": {
+      "post": {
+        "tags": [
+          "User Bet Limit"
+        ],
+        "summary": "Set User Bet Limit",
+        "description": "URL : `/set-bet-limit`",
+        "operationId": "SetUserBet",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "string",
+                  "example": "user1"
+                },
+                "globleLimit": {
+                  "type": "integer",
+                  "example": "123"
+                },
+                "typeLimit": {
+                  "type": "object",
+                  "properties": {
+                    "game_type": {
+                      "type": "string",
+                      "example": "andarbahar3334"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "example": 1000
+                    }
+                  }
+                },
+                "gamesLimit": {
+                  "type": "object",
+                  "properties": {
+                    "game_id": {
+                      "type": "string",
+                      "example": "cqa224"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "example": 1000
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "K.O. Island"
+                    }
+                  }
+                },
+                "vendorLimit": {
+                  "type": "object",
+                  "properties": {
+                    "vendor": {
+                      "type": "string",
+                      "example": "playngo"
+                    },
+                    "game_type": {
+                      "type": "string",
+                      "example": "live-casino"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "example": 1000
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": [],
+                  "status": {
+                    "error": false,
+                    "message": "User bet bet limit added successfully!"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-07T01:45:28.049Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/find-user-bet-limit": {
+      "get": {
+        "tags": [
+          "User Bet Limit"
+        ],
+        "summary": "Get User Bet Limit List",
+        "description": "URL : `/find-user-bet-limit`",
+        "operationId": "GetUserBet",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "user_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": [
+                    {
+                      "user_id": "testd12_tiger",
+                      "globle_limit": 0,
+                      "games_limit": [],
+                      "vendors_limit": [],
+                      "types_limit": [
+                        {
+                          "game_type": "all",
+                          "limit": 80,
+                          "vendor": "bigtimegaming",
+                          "unique_id": "lq7orzau5"
+                        }
+                      ]
+                    },
+                    {
+                      "user_id": "mangala12251479",
+                      "globle_limit": 0,
+                      "games_limit": [],
+                      "types_limit": [],
+                      "vendors_limit": []
+                    },
+                    {
+                      "user_id": "tiger23",
+                      "globle_limit": 0,
+                      "games_limit": [],
+                      "types_limit": [],
+                      "vendors_limit": []
+                    },
+                    {
+                      "user_id": "test01",
+                      "globle_limit": 125,
+                      "games_limit": [
+                        {
+                          "game_id": "cqa224",
+                          "title": "K.O. Island",
+                          "limit": 23444,
+                          "unique_id": "7b10c0ce-7e9e-4bba-8e41-344f9529e3c7"
+                        }
+                      ],
+                      "types_limit": [
+                        {
+                          "game_type": "all",
+                          "limit": 125,
+                          "vendor": "bigtimegaming",
+                          "unique_id": "fc079f32-bf92-493a-aafd-5a977c8c9c87"
+                        }
+                      ],
+                      "vendors_limit": [
+                        {
+                          "vendor": "playngo",
+                          "limit": 120,
+                          "game_type": "live-casino",
+                          "unique_id": "785a1e5f-ed8d-4c07-862d-699266784ea1"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": {
+                    "error": false,
+                    "message": "Users Bet Limit Fetch Successfully",
+                    "timestamp": "2023-12-18T12:31:23.567Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-07T01:45:28.049Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/update-user-bet-limit": {
+      "put": {
+        "tags": [
+          "User Bet Limit"
+        ],
+        "summary": "Update user bet limit",
+        "description": "URL : `/update-user-bet-limit`",
+        "operationId": "UpdateUserBet",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "body",
+            "description": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "user1"
+            }
+          },
+          {
+            "name": "unique_id",
+            "in": "body",
+            "description": "unique_id (Note: unique_id is not required for update globle limit)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "c7ca77fd-2a03-4dd7-a39d-0997d93f0640"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "body",
+            "description": "limit is a positive number value",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1000"
+            }
+          },
+          {
+            "name": "type",
+            "in": "body",
+            "description": "type should be one of them (types_limit,games_limit, global_limit, vendors_limit)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "types_limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "status": {
+                      "error": false,
+                      "message": "User Bet Limit Updated Successfully!",
+                      "timestamp": "2023-12-18T13:28:57.668Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-07T01:45:28.049Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delete-user-bet-limit": {
+      "delete": {
+        "tags": [
+          "User Bet Limit"
+        ],
+        "summary": "Delete user bet limit",
+        "description": "URL : `/delete-user-bet-limit`",
+        "operationId": "DeleteUserBet",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "body",
+            "description": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "user1"
+            }
+          },
+          {
+            "name": "unique_id",
+            "in": "body",
+            "description": "unique_id (Note: unique_id is not required for delete globle limit)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "c7ca77fd-2a03-4dd7-a39d-0997d93f0640"
+            }
+          },
+          {
+            "name": "type",
+            "in": "body",
+            "description": "type should be one of them (types_limit,games_limit, global_limit, vendors_limit)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "types_limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {
+                    "status": {
+                      "error": false,
+                      "message": "User Bet Limit Deleted Successfully!",
+                      "timestamp": "2023-12-18T13:27:33.667Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-07T01:45:28.049Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/error-log": {
+      "get": {
+        "tags": [
+          "Error Log"
+        ],
+        "summary": "Get API Error log",
+        "description": "URL : `/error-log`",
+        "operationId": "GetErrorLog",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "YYYY-MM-DD hh:mm:ss (Based on your agent timezone. Find Your timezone from My Page -> Time Zone)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "YYYY-MM-DD hh:mm:ss (Based on your agent timezone. Find Your timezone from My Page -> Time Zone)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "user_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": [
+                    {
+                      "message": "User money can't be less than request",
+                      "error_code": "as_32",
+                      "description": "Casino user money can't be less than bet.",
+                      "user_id": "test01",
+                      "created_at": "2023-11-10 12:08:04"
+                    },
+                    {
+                      "url": "https://demo4.jackpot-city.live/api/balance?user_id=test01",
+                      "message": "Seamless balance API error (money is requred)",
+                      "error_code": "2",
+                      "data": {
+                        "code": 1
+                      },
+                      "description": "Balance API responce not include 'money' object. please check seamless balance API responce.",
+                      "user_id": "test01",
+                      "created_at": "2023-11-10 12:08:02"
+                    }
+                  ],
+                  "status": {
+                    "error": false,
+                    "message": "Data fetch successfully",
+                    "timestamp": "2023-11-11T17:01:58.061Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Header authorization is required",
+            "content": {
+              "application/json": {
+                "type": "object",
+                "example": {
+                  "data": {},
+                  "status": {
+                    "error": true,
+                    "error_message": "Header authorization is required",
+                    "error_code": "as_01",
+                    "timestamp": "2023-08-07T01:45:28.049Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "api_key": "api_key"
+    },
+    "responses": {
+      "UserInfo": {
+        "description": "Agent API key",
+        "content": {
+          "application/json": {
+            "example": {
+              "result_value": {
+                "api_key": "api_key"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Agent",
+      "description": "Operations related to agents"
+    },
+    {
+      "name": "User",
+      "description": "Operations related to casino users"
+    },
+    {
+      "name": "Game information inquiry",
+      "description": "Operations related to game information"
+    },
+    {
+      "name": "Game Access API",
+      "description": "Operations related to game access API"
+    },
+    {
+      "name": "Money Conversion API",
+      "description": "Operations related to money conversion API"
+    },
+    {
+      "name": "Transaction History",
+      "description": "Operations related to transaction"
+    },
+    {
+      "name": "User Bet Limit",
+      "description": "Operations related to user bet limit"
+    },
+    {
+      "name": "Error Log",
+      "description": "Operations related to error log"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+	"openapi": "3.0.2",
+	"servers": [
+		{
+			"url": ""
+		}
+	],
+	"paths": {
+		"/api/playGame": {
+			"get": {
+				"tags": [
+					"Game Paly API"
+				],
+				"summary": "Game Play URL",
+				"description": "playGame",
+				"operationId": "playGame",
+				"parameters": [
+					{
+						"name": "username",
+						"in": "query",
+						"description": "Casino User ID",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "game_id",
+						"in": "query",
+						"description": "Casino Game ID",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "language",
+						"in": "query",
+						"description": "Game Opening Language",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "device",
+						"in": "query",
+						"description": "desktop or mobile",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {
+										"method": "GET",
+										"url": "https://game.run.com/?token=925acb9135d64caf82cbdbfc1be4792720230722155817&mode=real&language=en",
+										"headers": {
+											"Accept\t": "application/json",
+											"Content-Type": "application/json"
+										},
+										"body": "{}"
+									},
+									"status": {
+										"error": false,
+										"message": "Result of Game Play Request",
+										"timestamp": "2023-08-07T03:23:13.049Z"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid input",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {},
+									"status": {
+										"error": true,
+										"error_message": "username is required",
+										"error_code": "as_17",
+										"timestamp": "2023-08-07T03:23:43.586Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

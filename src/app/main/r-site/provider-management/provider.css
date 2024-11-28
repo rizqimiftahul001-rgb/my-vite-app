@@ -1,0 +1,29 @@
+.input-labet {
+  background-color: #eaecf4;
+  color: #6e707e;
+  border-radius: 5px 0 0 5px;
+}
+.item-center {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.text-buttons .plusbtn:hover,
+.text-buttons .plusbtn:active,
+.text-buttons .minusbtn:hover,
+.text-buttons .minusbtn:active {
+  background-color: #b9b9b942;
+}
+.text-buttons .minusbtn,
+.text-buttons .plusbtn {
+  border: 1px solid #ddd;
+  border-left: 0;
+  background-color: transparent;
+}
+@media(max-width:575px) {
+  .popup-box img {
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}

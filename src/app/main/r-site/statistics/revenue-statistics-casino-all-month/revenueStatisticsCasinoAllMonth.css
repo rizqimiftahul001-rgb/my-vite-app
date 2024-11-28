@@ -1,0 +1,62 @@
+/** @format */
+.input-labet {
+	background-color: #eaecf4;
+	color: #6e707e;
+	border-radius: 5px 0 0 5px;
+}
+.item-center {
+	display: flex;
+	align-items: center !important;
+	justify-content: center !important;
+}
+.p-16 {
+	padding: 16px !important;
+}
+@media (max-width: 575px) {
+	.react-datepicker-wrapper {
+		width: 100%;
+	}
+	.inputfull {
+		width: 100%;
+		min-width: 150px;
+		margin-left: 0;
+		margin-top: 10px;
+	}
+	.weapbox {
+		padding-bottom: 0 !important;
+	}
+	.mobwidth {
+		padding-left: 10px !important;
+	}
+	.mobwidth,
+	.mobwidth button,
+	.weapbox .datepikers input,
+	.weapbox .datepikers .flatpickr-wrapper,
+	.weapbox .datepikers {
+		width: 100%;
+	}
+	.flatpickr-calendar {
+		width: 100%;
+		/* Set the width to 100% for smaller screens */
+	}
+	.flatpickr-input {
+		font-size: 14px;
+	}
+	.flatpickr-monthDropdown-wrap,
+	.flatpickr-yearDropdown-wrap {
+		display: none;
+		/* Hide month and year dropdowns on smaller screens */
+	}
+	.flatpickr-calendar {
+		padding: 10px;
+		/* Adjust padding as needed */
+	}
+	.flatpickr-day {
+		padding: 8px;
+		/* Increase the clickable area for days */
+	}
+	.flatpickr-calendar {
+		z-index: 1000;
+		/* Adjust the z-index as needed */
+	}
+}

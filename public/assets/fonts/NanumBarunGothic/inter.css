@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: 'Regular';
+    src: url("NanumBarunGothic.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: 'NanumBarunGothic_bold';
+    font-weight: 100 900;
+    font-display: swap;
+    font-named-instance: 'Regular';
+    src: url("NanumBarunGothicBold.ttf") format("ttf");
+}
+@font-face {
+    font-family: 'NanumBarunGothic_Light';
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("NanumBarunGothicLight.ttf") format("ttf");
+}

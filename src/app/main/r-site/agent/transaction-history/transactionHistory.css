@@ -1,0 +1,34 @@
+.input-labet {
+  background-color: #eaecf4;
+  color: #6e707e;
+  border-radius: 5px 0 0 5px;
+}
+.item-center {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.p-16 {
+  padding: 16px !important;
+}
+@media (max-width:575px) {
+  .autocomplete {
+    width: 100%;
+  }
+  .dashboard_card_wrapper1 {
+    flex-wrap: wrap !important;
+  }
+}
+.textSize{
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+.textSize1{
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+.textSize3{
+  font-size: 14px !important;
+  font-weight: bold !important;
+}

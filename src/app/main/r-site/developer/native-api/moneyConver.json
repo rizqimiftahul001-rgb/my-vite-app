@@ -1,0 +1,146 @@
+{
+	"openapi": "3.0.2",
+	"servers": [
+		{
+			"url": ""
+		}
+	],
+	"paths": {
+		"/api/deposit": {
+			"post": {
+				"tags": [
+					"User Deposit API"
+				],
+				"summary": "Charge",
+				"description": "deposit",
+				"operationId": "deposit",
+				"parameters": [
+					{
+						"name": "uid",
+						"in": "body",
+						"description": "Casino User ID",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "money",
+						"in": "body",
+						"description": "Charge Amount",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {
+										"uid": "test01",
+										"amount": 15620
+									},
+									"status": {
+										"error": false,
+										"message": "Casino user deposit successfully",
+										"timestamp": "2023-08-07T02:04:04.667Z"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid input",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {},
+									"status": {
+										"error": true,
+										"error_message": "uid is required",
+										"error_code": "as_08",
+										"timestamp": "2023-08-07T02:00:09.163Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/withdrawal": {
+			"post": {
+				"tags": [
+					"User Withdrawal API"
+				],
+				"summary": "Excharge",
+				"description": "withdrawal",
+				"operationId": "withdrawal",
+				"parameters": [
+					{
+						"name": "uid",
+						"in": "body",
+						"description": "Casino User ID",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "money",
+						"in": "body",
+						"description": "Amount",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {
+										"uid": "test01",
+										"amount": 15640
+									},
+									"status": {
+										"error": false,
+										"message": "Casino user withdraw successfully",
+										"timestamp": "2023-08-07T02:52:11.493Z"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid input",
+						"content": {
+							"application/json": {
+								"type": "object",
+								"example": {
+									"data": {},
+									"status": {
+										"error": true,
+										"error_message": "uid is required",
+										"error_code": "as_08",
+										"timestamp": "2023-08-07T02:22:23.647Z"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

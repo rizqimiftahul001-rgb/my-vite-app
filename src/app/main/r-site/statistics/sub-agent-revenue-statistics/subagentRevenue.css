@@ -1,0 +1,30 @@
+/** @format */
+.input-labet {
+	background-color: #eaecf4;
+	color: #6e707e;
+	border-radius: 5px 0 0 5px;
+}
+.item-center {
+	display: flex;
+	align-items: center !important;
+	justify-content: center !important;
+}
+.p-16 {
+	padding: 16px !important;
+}
+@media(max-width:400px) {
+	.mainboxs .inpbox {
+		margin-right: 0;
+		margin-bottom: 10px;
+	}
+	.mainboxs .flex.item-center,
+	.mainboxs .inpbox {
+		width: 100%;
+	}
+	.item-center {
+		display: flex;
+		align-items: center !important;
+		justify-content: center !important;
+		width: "100%";
+	}
+}

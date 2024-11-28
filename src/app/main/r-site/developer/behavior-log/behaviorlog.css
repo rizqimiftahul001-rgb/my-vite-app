@@ -1,0 +1,26 @@
+.input-labet {
+  background-color: #eaecf4;
+  color: #6e707e;
+  border-radius: 5px 0 0 5px;
+}
+.item-center {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.p-16 {
+  padding: 16px !important;
+}
+@media (max-width:575px) {
+  .item-center.calender {
+    padding: 0 !important;
+    padding-bottom: 10px !important;
+  }
+  .row.flex-wrap {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .col-lg-8 {
+    width: 100%;
+  }
+}
