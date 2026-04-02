@@ -13,6 +13,7 @@ const aliases = (prefix = 'src') => ({
   'app/configs': path.resolve(__dirname, `${prefix}/app/configs`),
   'app/theme-layouts': path.resolve(__dirname, `${prefix}/app/theme-layouts`),
   'app/AppContext': path.resolve(__dirname, `${prefix}/app/AppContext`),
+  'i18n': path.resolve(__dirname, `${prefix}/i18n.jsx`), // Menambahkan alias untuk i18n.jsx
 });
 
 export default defineConfig({
